@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Shipment Search</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 60px auto; padding: 0 20px; }
+        .result-box { background: #f0f8f0; border: 1px solid #b2d8b2; padding: 20px; border-radius: 6px; margin-top: 20px; }
+        .error-box { background: #fff0f0; border: 1px solid #f5c6c6; padding: 20px; border-radius: 6px; margin-top: 20px; }
+        label { display: block; margin-bottom: 6px; font-weight: bold; }
+        input[type=text] { width: 100%; padding: 8px; box-sizing: border-box; margin-bottom: 12px; }
+        button { padding: 8px 20px; background: #2c6fad; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Shipment Tracker</h2>
+
+    <form method='get' action=''>
+        <label for='tracking_code'>Enter Tracking Code</label>
+        <input type='text' id='tracking_code' name='tracking_code' placeholder='e.g. TRK001'>
+        <button type='submit'>Search</button>
+    </form>
+
+    {% if error_message %}
+        <div class='error-box'>
+            <strong>Notice:</strong> {{ error_message }}
+        </div>
+    {% endif %}
+
+    {% if shipment %}
+        <div class='result-box'>
+            <h3>Shipment Details</h3>
+            <p><strong>Tracking Code:</strong> {{ shipment.code }}</p>
+            <p><strong>Status:</strong> {{ shipment.status }}</p>
+            <p><strong>Courier:</strong> {{ shipment.courier_name }}</p>
+        </div>
+    {% endif %}
+
+</body>
+</html>
